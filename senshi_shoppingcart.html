@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+	<title>SENSHI</title>
+	<meta name="google-site-verification" content="GXVjRcZwacF3GY8TXuh3h_pw8snmHhcwCTcgoT5eCIs" />
+	<link rel="stylesheet" media="screen and (min-width: 725px)" href="css_stylesheet_senshi.css" >
+	<link rel="stylesheet" media="screen and (max-width: 725px)" href="css_stylesheet_smallScreen.css" >
+
+	<meta charset="UTF-8">
+	<meta name="description" content="This brandcombined combined two of my favourite 
+topics namely the Japanese (street)cult and design.">
+    <meta name="keywords" content="streetcult, Japanese, design, clothes">
+    <meta name="author" content="Cédric Devos">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" href="ICON.jpg" size= "32x32" type="image/x-icon">
+
+</head>
+
+<body onload="winkelwagenGeladen()">
+<script type="text/javascript">
+function winkelwagenGeladen() {
+        var geladen_lijst = sessionStorage.getItem("lijst_winkelwagen");
+        var winkelwagen = JSON.parse(geladen_lijst);
+        alert(winkelwagen);
+
+        if (winkelwagen == null || winkelwagen.length == 0) {
+        	 alert("leeg");
+             document.getElementById("shoppingcart-table").style.visibility = "hidden";
+             document.getElementById("button-afrekenen").style.visibility = "hidden";
+             document.getElementById("leeg").innerHTML = " IS EMPTY :(";
+        } else{
+        	alert("niet leeg");
+            var i;
+            document.getElementById("shoppingcart-table").style.visibility = "visible";
+            document.getElementById("button-afrekenen").style.visibility = "visible";
+            for (i = 0; i < winkelwagen.length; i = i + 4){
+                var table = document.getElementById("shoppingcart-table");
+                var y = document.getElementById("shoppingcart-table").rows.length;
+                var row = table.insertRow(y);
+
+                var cel_prijs = row.insertCell(0);
+                var cel_aantal = row.insertCell(1);
+                var cel_maat = row.insertCell(2);
+                var cel_naam_product = row.insertCell(3);
+                var cel_button_delete = row.insertCell(4);
+
+                cel_prijs.innerHTML = "€ " + winkelwagen[i+3];
+                cel_aantal.innerHTML = winkelwagen[i+2];
+                cel_maat.innerHTML = winkelwagen[i+1];
+                cel_naam_product.innerHTML = winkelwagen[i];
+                cel_button_delete.innerHTML = "<button onclick='delete_product(this)'><i class='fa fa-trash' style='font-size:30px'></i></button>";
+
+
+                /*winkelwagen = [naam,maat,aantal,prijs]*/
+            }
+        }
+}
+function delete_product(r){
+    var i = r.parentNode.parentNode.rowIndex;
+    document.getElementById("shoppingcart-table").deleteRow(i);
+    alert(i);
+    var geladen_lijst = sessionStorage.getItem("lijst_winkelwagen");
+    var winkelwagen = JSON.parse(geladen_lijst);
+    winkelwagen.splice((i - 1) * 4, (i - 1) * 4 + 4);
+    sessionStorage.setItem("lijst_winkelwagen", JSON.stringify(winkelwagen));
+    if (i == 1 || winkelwagen.length == 0) {
+    	alert("leeg");
+    	document.getElementById("button-afrekenen").style.visibility = "hidden";
+        document.getElementById("shoppingcart-table").style.visibility = "hidden";
+        document.getElementById("leeg").innerHTML = " IS EMPTY :(";
+    }
+    
+}
+</script>	
+<a href="index.html"><img id="logo" src="SENSHI_HEAD_LOGO.png" alt="senshi's logo"></a>
+
+<div class="topnav">
+	<a href="index.html">home</a>
+	<a href="senshi_shopping.html">shop</a>
+	<a href="senshi_about.html">about</a>
+	<a href="senshi_shoppingcart.html"><i class='fas fa-shopping-cart'></i></a>
+</div>
+<div class="tabel-tekst">
+<h1>YOUR SHOPPINGCART</h1>
+<h1 id="leeg"></h1>
+<table id="shoppingcart-table">
+	<tr>
+		<th>price</th>
+		<th>number</th>
+		<th>size</th>
+		<th>product</th>
+		<th>delete?</th>
+	</tr>
+</table>
+<div id="checkout-info">
+    <button id="button-afrekenen" onclick="document.location='senshi_checkoutForm.html'">checkout</button>
+</div>
+</div>
+<div class="bron">
+	<p id="bron_tekst">SENSHI™ by Isaac</p>
+	<p id="bron_tekst">powered by Cédric</p>
+</div>
+	
+</body>

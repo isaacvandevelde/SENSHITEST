@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+	<title>SENSHI | CHECK-OUT</title>
+	<link rel="stylesheet" media="screen and (min-width: 725px)" href="css_stylesheet_senshi.css" >
+	<link rel="stylesheet" media="screen and (max-width: 725px)" href="css_stylesheet_smallScreen.css" >
+	<meta charset="UTF-8">
+	<meta name="author" content="Cédric Devos">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" href="ICON.jpg" size= "32x32" type="image/x-icon">
+</head>
+
+<body onload="laad_prijs()">
+<script type="text/javascript">
+    function laad_prijs(){
+        var geladen_lijst = sessionStorage.getItem("lijst_winkelwagen");
+        var lijst = JSON.parse(geladen_lijst);
+        var totaal_bedrag = 0;
+        var i;
+        for (i = 2; i < lijst.length; i = i + 4){
+            totaal_bedrag = lijst[i] * lijst[i + 1] + totaal_bedrag;
+            alert(totaal_bedrag);
+        }
+        document.getElementById("totaal_bedrag").innerHTML = "TE BETALEN: €" + totaal_bedrag.toString();
+    }
+    /*winkelwagen = [naam,maat,aantal,prijs]*/
+</script>
+<a href="index.html"><img id="logo" src="SENSHI_HEAD_LOGO.png" alt="senshi's logo"></a>
+
+<h1 id="totaal_bedrag"></h1>
+<p>We vragen om het te betalen bedragen te betalen binnen de 8 uur vanaf dan wordt de bestelling verwerkt.</p><br>
+    <form class="check-out">
+    	<label>Name:</label>
+    	<input type="text" name="voornaam" placeholder="Bert"><br>
+    	<label>First name:</label>
+    	<input type="text" name="achternaam" placeholder="Van der Weeghe"><br>
+    	<label>E-mail address:</label>
+        <input type="email" name="mailadres" placeholder="bert.vdw@example.com"><br>
+        <label>Phone number:</label>
+        <input type="tel" name="telefoonnummer" placeholder="04 69 77 34 57"><br>
+        <label>Street + Number</label>
+    	<input type="text" name="adres" placeholder="street 1"><br>
+    	<label>Postcode:</label>
+        <input type="number" name="postcode" placeholder="1234"><br>
+        <label>Place of residence:</label>
+    	<input type="text" name="woonplaats" placeholder="Ghent"><br>
+        <label>Country:</label>
+        <input type="text" name="land" placeholder="Belgium"><br>
+    	<label>Name of cardholder:</label>
+    	<input type="text" name="naam kaarthouder" placeholder="Bert....."><br><br>
+    	<input type="submit" placeholder="送信する" value="SUBMIT" id="submit" alt="process order">
+        <p id="info_button">(when you press this button you also agree to terms of condition)</p>
+    </form>
+<div class="bron">
+	<p id="bron_tekst">SENSHI™ by Isaac</p>
+	<p id="bron_tekst">powered by Cédric</p>
+</div>
+</body>

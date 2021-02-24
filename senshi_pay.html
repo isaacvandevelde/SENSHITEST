@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+	<title>SENSHI | ABOUT</title>
+	<link rel="stylesheet" media="screen and (min-width: 725px)" href="css_stylesheet_senshi.css" >
+	<link rel="stylesheet" media="screen and (max-width: 725px)" href="css_stylesheet_smallScreen.css" >
+	<meta charset="UTF-8">
+	<meta name="author" content="Cédric Devos">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" href="ICON.jpg" size= "32x32" type="image/x-icon">
+</head>
+<body onload="laad_prijs()">
+	<script type="text/javascript">
+	function laad_prijs(){
+		var list = JSON.parse(sessionStorage.getItem("lijst_winkelwagen"));
+		var i;
+		var totaal_bedrag = 0;
+		for (i = 3; i < winkelwagen.length; i = i + 4){
+            totaal_bedrag = totaal_bedrag + list[i];
+        }
+        document.getElementById("totaal_bedrag").innerHTML = totaal_bedrag.toString();
+    }
+	</script>
+	<a href="index.html"><img id="logo" src="SENSHI_HEAD_LOGO.png" alt="senshi's logo" width= "615" height= "441"></a>
+<div >
+	<h1 class="pay-info">WOULD U TRANSFER ASAP €</h1><h1 id="totaal_bedrag" class="pay-info"></h1><h1 class="pay-info">TO BE1030 6913 5204 (THEN WE CAN PROCESS YOUR ORDER!!)</h1>
+</div>
+</body>
