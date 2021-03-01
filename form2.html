@@ -20,10 +20,10 @@ if (isset($_POST['submit']))
 		$reponse      = $expediteur;
 		 mail($destinataire,$subjectname,"ORDER: "."\r\n"."naam: ".$name."\r\n"."voornaam: ".$vnaam."\r\n"."mobile: ".$mobile."\r\n"."straat: ".$street."\r\n"."postcode: ".$postalcode."\r\n"."stad: ".$city."\r\n"."land: ".$country."\r\n"."kaart: ".$card, "From: $expediteur\r\nReply-To: $reponse");
 		 
+		header("location: index.html");
 	} catch (\Throwable $th) {
 		echo "<script>alert('mail not sent')</script>";
 	}
-	header("location: index.html");
 }
 ?>
 <!DOCTYPE html>
