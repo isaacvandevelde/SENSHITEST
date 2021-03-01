@@ -24,5 +24,5 @@ if (isset($_POST['submit']))
 	} catch (\Throwable $th) {
 		echo "<script>alert('mail not sent')</script>";
 	}
-	
+	header("location: index.html");
 }
