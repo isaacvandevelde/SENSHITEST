@@ -25,5 +25,5 @@ if (isset($_POST['submit']))
 		echo "<script>alert('mail not sent')</script>";
 	}
 	header("location: index.html");
-	)
+	
 }
