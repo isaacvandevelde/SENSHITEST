@@ -240,9 +240,7 @@ a #productlink{
     display: block;
     position: relative;
 }
-.fa{
-  visibility: hidden;
-}
+
 .personal-container{
   margin:auto;
   width:340px;
